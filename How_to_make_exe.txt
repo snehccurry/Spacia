@@ -1,0 +1,7 @@
+To Make an exe, we just have to run the installer by running the following commands:
+	python securedspaceinstaller.py
+
+
+important files include:
+
+securedspaceinstaller.py

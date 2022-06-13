@@ -51,7 +51,7 @@ def main():
     env = os.environ
     if "--debug" in sys.argv:
         env["CEFPYTHON_PYINSTALLER_DEBUG"] = "1"
-    sub = Popen(["pyinstaller", "--clean", "pyinstaller.spec"], env=env)
+    sub = Popen(["pyinstaller", "--clean", "securedspaceinstaller.spec"], env=env)
     sub.communicate()
     rcode = sub.returncode
     if rcode != 0:
@@ -63,18 +63,18 @@ def main():
 
     # Make sure everything went fine
     curdir = os.path.dirname(os.path.abspath(__file__))
-    securespaceapp_dir = os.path.join(curdir, "dist", "securespaceapp")
-    executable = os.path.join(securespaceapp_dir, "securespaceapp"+EXE_EXT)
-    """if not os.path.exists(executable):
-                              print("Error: PyInstaller failed, main executable is missing: %s"
-                              % executable)
-                              sys.exit(1)"""          #i commented this cuz exe was made but i was unable to find the error myself lol.
+    SecuredSpace_dir = os.path.join(curdir, "dist", "SecuredSpace")
+    executable = os.path.join(SecuredSpace_dir, "SecuredSpace"+EXE_EXT)
+    if not os.path.exists(executable):
+        print("Error: PyInstaller failed, main executable is missing: %s"
+              % executable)
+        sys.exit(1)              #i commented this cuz exe was made but i was unable to find the error myself lol.
 
     # Done
     print("OK. Created dist/ directory.")
 
     # On Windows open folder in explorer or when --debug is passed
-    # run the result binary using "cmd.exe /k securespaceapp.exe", so that
+    # run the result binary using "cmd.exe /k SecuredSpace.exe", so that
     # console window doesn't close.
     if platform.system() == "Windows":
         if "--debug" in sys.argv:
@@ -82,7 +82,7 @@ def main():
         else:
             # SYSTEMROOT = C:/Windows
             os.system("%s/explorer.exe /n,/e,%s" % (
-                os.environ["SYSTEMROOT"], securespaceapp_dir))
+                os.environ["SYSTEMROOT"], SecuredSpace_dir))
 
 
 if __name__ == "__main__":
